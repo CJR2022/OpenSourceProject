@@ -27,23 +27,24 @@ def rank(stu_list, target, sub):
             result += 1
     return result
 
-
-students = []
 students_num = 5
-for i in range(students_num):
-    print("===========================")
-    name = input("이름 : ")
-    en = int(input("영어 점수 : "))
-    c = int(input("c언어 점수 : "))
-    p = int(input("파이썬 점수 : "))
-    students.append({'name': name, 'en': en, 'c': c, 'p': p, 'id': i, 'total': en + c + p})
-    print("===========================\n")
 
-for k in students:
-    print("\n===========================\n")
-    print(f"{k['name']}의 성적\n")
-    print(f"영어 : {k['en']}, 학점 : {grade(k, 'en')}, 등수 : {rank(students, k, 'en')}\n")
-    print(f"c언어 : {k['c']}, 학점 : {grade(k, 'c')}, 등수 : {rank(students, k, 'c')}\n")
-    print(f"파이썬 : {k['p']}, 학점 : {grade(k, 'p')}, 등수 : {rank(students, k, 'p')}\n")
-    print(f"총점 : {k['total']}, 평균 : {k['total'] / 3}, 종합등수 : {rank(students, k, 'total')}\n")
-print("===========================")
+def main() :
+    students = []
+    for i in range(students_num):
+        print("===========================")
+        name = input("이름 : ")
+        en = int(input("영어 점수 : "))
+        c = int(input("c언어 점수 : "))
+        p = int(input("파이썬 점수 : "))
+        students.append({'name': name, 'en': en, 'c': c, 'p': p, 'id': i, 'total': en + c + p})
+        print("===========================\n")
+
+    for k in students:
+        print("\n===========================\n")
+        print(f"{k['name']}의 성적\n")
+        print(f"영어 : {k['en']}, 학점 : {grade(k, 'en')}, 등수 : {rank(students, k, 'en')}\n")
+        print(f"c언어 : {k['c']}, 학점 : {grade(k, 'c')}, 등수 : {rank(students, k, 'c')}\n")
+        print(f"파이썬 : {k['p']}, 학점 : {grade(k, 'p')}, 등수 : {rank(students, k, 'p')}\n")
+        print(f"총점 : {k['total']}, 평균 : {k['total'] / 3}, 종합등수 : {rank(students, k, 'total')}\n")
+    print("===========================")
