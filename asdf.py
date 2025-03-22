@@ -20,11 +20,11 @@ def grade(stu, sub):    #학점계산함수
 def rank(stu_list, stu, sub):   #등수계산함수
     result = 1
     for i in range(students_num):
-        if stu['id'] != stu_list[i]['id'] and stu[sub] < stu_list[i][sub]:
+        if stu[sub] < stu_list[i][sub]:
             result += 1
     return result
 
-def input_info(stu_list):   #입력함수수
+def input_info(stu_list):   #입력함수
     for i in range(students_num):
         print("===========================")
         s_id = input("학번 : ")
@@ -32,7 +32,8 @@ def input_info(stu_list):   #입력함수수
         en = int(input("영어 점수 : "))
         c = int(input("c언어 점수 : "))
         p = int(input("파이썬 점수 : "))
-        stu_list.append({'name': name, 'en': en, 'c': c, 'p': p, 'id': s_id, 'total':0, })
+        stu_list.append({'name': name, 'en': en, 'c': c, 'p': p, 'id': s_id})
+        stu_list[i]['total'], stu_list[i]['ave'] = calc_total_ave(stu_list[i])
         print("===========================\n")
 
 def calc_total_ave(stu):    #총점/평균계산함수
@@ -42,15 +43,14 @@ def calc_total_ave(stu):    #총점/평균계산함수
 
 def print_info(stu_list):   #출력함수
     print(f"\n{'성적관리 프로그램':>20}\n")
-    print("===================================================================================\n")
-    print(f"{'학번':<8}{'이름':>6}{'영어':>7}{'C-언어':>7}"
+    print("========================================================================================\n")
+    print(f"{'학번':<12}{'이름':>8}{'영어':>7}{'C-언어':>7}"
           f"{'파이썬':>7}{'총점':>7}{'평균':>7}{'학점':>7}{'등수':>7}\n")
-    print("===================================================================================\n")
+    print("========================================================================================\n")
     for k in stu_list:
-        k['total'], k['ave'] = calc_total_ave(k)
         k['grade'] = grade(k,'total')
         k['rank'] = rank(stu_list,k,'total')
-        print(f"{k['id']:<10}{k['name']:>8}{k['en']:>9}{k['c']:>9}"
+        print(f"{k['id']:<13}{k['name']:>10}{k['en']:>9}{k['c']:>9}"
               f"{k['p']:>9}{k['total']:>9}{k['ave']:>9.2f}{k['grade']:>9}{k['rank']:>9}")
 
 students_num = 5
