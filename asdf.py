@@ -17,15 +17,15 @@ def grade(stu, sub):    #학점계산함수
     else:
         return 'F'
 
-def rank(stu_list, stu, sub):   #등수계산함수
+def rank(stu_list, stu, sub, StudentNum):   #등수계산함수
     result = 1
-    for i in range(students_num):
+    for i in range(StudentNum):
         if stu[sub] < stu_list[i][sub]:
             result += 1
     return result
 
-def input_info(stu_list):   #입력함수
-    for i in range(students_num):
+def input_info(stu_list, StudentNum):   #입력함수
+    for i in range(StudentNum):
         print("===========================")
         s_id = input("학번 : ")
         name = input("이름 : ")
@@ -41,7 +41,7 @@ def calc_total_ave(stu):    #총점/평균계산함수
     ave = float(total / 3)
     return total, ave
 
-def print_info(stu_list):   #출력함수
+def print_info(stu_list, StudentNum):   #출력함수
     print(f"\n{'성적관리 프로그램':>20}\n")
     print("========================================================================================\n")
     print(f"{'학번':<12}{'이름':>8}{'영어':>7}{'C-언어':>7}"
@@ -49,11 +49,12 @@ def print_info(stu_list):   #출력함수
     print("========================================================================================\n")
     for k in stu_list:
         k['grade'] = grade(k,'total')
-        k['rank'] = rank(stu_list,k,'total')
+        k['rank'] = rank(stu_list, k, 'total', StudentNum)
         print(f"{k['id']:<13}{k['name']:>10}{k['en']:>9}{k['c']:>9}"
               f"{k['p']:>9}{k['total']:>9}{k['ave']:>9.2f}{k['grade']:>9}{k['rank']:>9}")
 
-students_num = 5
-students = []
-input_info(students)
-print_info(students)
+if __name__ == '__main__':
+    students_num = 2
+    students = []
+    input_info(students, students_num)
+    print_info(students, students_num)
